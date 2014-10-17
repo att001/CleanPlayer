@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.1.7.1010
+// @version     2.1.8.1017
 // @updateURL   https://userscripts.org/scripts/source/162430.meta.js
 // @downloadURL https://userscripts.org/scripts/source/162430.user.js
 // @include     http://*/*
@@ -98,7 +98,7 @@ var OCPlayer = {
 			});
 		}
 	}, { // LETV_COM
-		find: /^http:\/\/.*letv[\w]*\.com\/.*\/(?!(Live|seed))(((C|S)[\w]{2,3})?(?!Live)[\w]{4}|swf|VLetv)Player[^\.]*\.swf/i,
+		find: /^http:\/\/.*letv[\w]*\.com\/(hz|.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf))Player*\.swf/i,
 		replace: function(el, find) {
 			/^baidu\.hz\.letv\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'letv.swf')();
 		}
@@ -123,43 +123,40 @@ var OCPlayer = {
 	}, { // SOHU_COM
 		find: /^http:\/\/tv\.sohu\.com\/upload\/swf\/(?!(live|\d+)).*\d+\/(Main|PlayerShell)\.swf/i,
 		replace: 'sohu/sohu.swf'
-	}, { // SOHU_LIVE  已修改，合并了规则
-		find: /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(live\/|)\d+|(\d+\.){3}\d+(:\d+)?\/.*player)\/(main|PlayerShell)\.swf/i,
+	}, { // SOHU_LIVE
+		find: /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(live\/|)\d+|(\d+\.){3}\d+(:\d+)?\/(.*player))\/(main|PlayerShell)\.swf/i,
 		replace: 'sohu/sohu_live.swf'
-	}, { // LETV_HZ
-		find: /^http:\/\/.*\.letv[\w]*\.com\/(hz|.*player\/(s)?sdkletv)player\.swf.*/i,
-		replace: 'letv.swf'
-	}, { // LETV_OUT
-		find: /^http:\/\/.*\.letvimg\.com\/.*\/(letvbili|lbplayer|letv-wrapper|acfunletv[^\.]*)\.swf/i,
-		replace: 'letv.swf'
-	}, { // SOHU_BILIBILI
+	}, { // SOHU_SKIN
+		find: /^http\:\/\/tv\.sohu\.com\/upload\/(swf|swf\/live)\/\d+\/skins\/s1\.swf/i,
+		replace: aHost + 'sohu/s1.swf'
+	}, { // SOHU_Bilibili
 		find: /^http:\/\/static\.hdslb\.com\/sohu\.swf/i,
 		replace: 'sohu/sohu_live.swf'
-	}, { // SOHU_OUT1
+	}, { // SOHU_OUT_1
 		find: /^http:\/\/.*\.sohu\.com\/my\/v\.swf(.*)/i,
-		replace: 'sohu/sohu.swf' + '?$1'
-	}, { // SOHU_OUT2
+		replace: 'sohu/sohu_live.swf' + '?$1'
+	}, { // SOHU_OUT_2
 		find: /^http:\/\/.*\.sohu\.com\/(\d+)\/v\.swf/i,
-		replace: 'sohu/sohu.swf' + '?vid=$1'
-	}, { // 17173_IN_VOD
-    find: /^http:\/\/f\.v\.17173cdn\.com\/(\d*)\/flash\/PreloaderFile\.swf/i,
-    replace: aHost + '17173/17173.in.Vod.swf'
-  }, { // 17173_IN_LIVE
-    find: /^http:\/\/f\.v\.17173cdn\.com\/(\d*)\/flash\/Player_stream(_firstpage)?\.swf/i,
-    replace: aHost + '17173/17173.in.Live.swf'
-  }, { // 17173_OUT_LIVE
-    find: /^http:\/\/v\.17173\.com\/live\/player\/Player_stream_(custom)?Out\.swf/i,
-    replace: aHost + '17173/17173.out.Live.swf' + '?'
-  },{ // 17173_OUT_VOD
-    find: /^http:\/\/f\.v\.17173cdn\.com\/flash\/PreloaderFileFirstpage\.swf/i,
-    replace: aHost + '17173/17173.out.Vod.swf'
-  }, { // 17173_OUT_1
-    find: /^http:\/\/f\.v\.17173cdn\.com\/player_f2\/(\w+)\.swf/i,
-    replace: aHost + '17173/17173.out.Vod.swf' + '?cid=$1'
-  }, { // 17173_OUT_2
-    find: /^(http:\/\/17173\.tv\.sohu\.com\/player[^\.]*\.swf)/i,
-    replace: aHost + '17173/17173.out.Vod.swf'
-  }],
+		replace: 'sohu/sohu_live.swf' + '?vid=$1'
+	}, { // SOHU_OUT_2
+		find: /^http:\/\/.*\.sohu\.com\/(\d+)\/v\.swf/i,
+		replace: 'sohu/sohu_live.swf' + '?vid=$1'
+	}, { // 17173_in_Vod
+		find: /^http:\/\/f\.v\.17173cdn\.com\/\d+\/flash\/PreloaderFile(Customer)?\.swf/i,
+		replace: aHost + '17173/17173.in.Vod.swf'
+	}, { // 17173_out_Vod_1
+		find: /^http:\/\/f\.v\.17173cdn\.com\/player_f2\/(\w+)\.swf/i,
+		replace: aHost + '17173/17173.out.Vod.swf' + '?cid=$1'
+	}, { // 17173_out_Vod_2
+		find: /^http:\/\/17173\.tv\.sohu\.com\/player[^\.]*\.swf/i,
+		replace: aHost + '17173/17173.out.Vod.swf'
+	}, { // 17173_in_Live
+		find: /^http:\/\/f\.v\.17173cdn\.com\/\d+\/flash\/Player_stream(_firstpage)?\.swf/i,
+		replace: aHost + '17173/17173.in.Live.swf'
+	}, { // 17173_out_Live
+		find: /^http:\/\/v\.17173\.com\/live\/player\/Player_stream_(custom)?Out\.swf/i,
+		replace: aHost + '17173/17173.out.Live.swf' + '?'
+	}],
 
 	style: 'object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}',
 
