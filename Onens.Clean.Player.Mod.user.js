@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.1.8.1017
+// @version     2.1.8.1019
 // @updateURL   https://userscripts.org/scripts/source/162430.meta.js
 // @downloadURL https://userscripts.org/scripts/source/162430.user.js
 // @include     http://*/*
@@ -126,9 +126,6 @@ var OCPlayer = {
 	}, { // SOHU_LIVE
 		find: /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(live\/|)\d+|(\d+\.){3}\d+(:\d+)?\/(.*player))\/(main|PlayerShell)\.swf/i,
 		replace: 'sohu/sohu_live.swf'
-	}, { // SOHU_SKIN
-		find: /^http\:\/\/tv\.sohu\.com\/upload\/(swf|swf\/live)\/\d+\/skins\/s1\.swf/i,
-		replace: aHost + 'sohu/s1.swf'
 	}, { // SOHU_Bilibili
 		find: /^http:\/\/static\.hdslb\.com\/sohu\.swf/i,
 		replace: 'sohu/sohu_live.swf'
