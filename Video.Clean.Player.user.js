@@ -3,7 +3,7 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.1011
+// @version     3.14.1019
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
@@ -56,7 +56,6 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     'letv_cloud': this.iURL + 'letv_cloud.swf',
                     'sohu':this.iURL + 'sohu/sohu.swf',
                     'sohu_live':this.iURL + 'sohu/sohu_live.swf',
-                    'sohu_skin':this.iURL + 'sohu/s1.swf',
                     '17173_in_Vod': this.iURL + '17173/17173.in.Vod.swf', 
                     '17173_in_Live': this.iURL + '17173/17173.in.Live.swf',
                     '17173_out_Vod': this.iURL + '17173/17173.out.Vod.swf',
@@ -90,7 +89,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     },
                     'iqiyi': {
                         'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player_.*)\.swf/i,
-                        'replace': this.players['iqiyi5']
+                        'replace': this.players['iqiyi']
                     },
                     'iqiyi_out': {
                         'find': /^https?:\/\/player\.video\.i?qiyi\.com\/([^\/]*)\/.*tvId=([^-]*).*/i,
@@ -147,10 +146,6 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     'sohu_live': {
                         'find': /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(live\/|)\d+|(\d+\.){3}\d+(:\d+)?\/(.*player))\/(main|PlayerShell)\.swf/i,
                         'replace': this.players['sohu_live']
-                    },
-                    'sohu_skin': {
-                        'find': /^http\:\/\/tv\.sohu\.com\/upload\/(swf|swf\/live)\/\d+\/skins\/s1\.swf/i,
-                        'replace': this.players['sohu_skin']
                     },
                     'sohu_bilibili': {
                         'find': /^http:\/\/static\.hdslb\.com\/sohu\.swf/i,
