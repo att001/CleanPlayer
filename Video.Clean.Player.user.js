@@ -88,7 +88,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': this.players['ku6_out'] + '?vid=$2'
                     },
                     'iqiyi': {
-                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player_.*)\.swf/i,
+                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player.*_(.|ad\d+))\.swf/i,
                         'replace': this.players['iqiyi']
                     },
                     'iqiyi_out': {
@@ -183,12 +183,14 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
             }
             return this._rules;
         },
+
         get done() {
             if(!this._done) {
                 this._done = new Array();
             }
             return this._done;
         },
+
         initPreHandlers: function() {
             this.rules['iqiyi']['preHandle'] = function(elem, find, replace, player) {
                 if(document.querySelector('span[data-flashplayerparam-flashurl]')) {
@@ -232,6 +234,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                 this.replace(e.target);
             }
         },
+
         replace: function(elem) {
             if(this.done.indexOf(elem) != -1) return;
             this.done.push(elem);
@@ -260,6 +263,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
             elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
             this.reloadPlugin(elem);
         },
+
         reloadPlugin: function(elem) {
             var nextSibling = elem.nextSibling;
             var parentNode = elem.parentNode;
