@@ -3,7 +3,7 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.1019
+// @version     3.14.1106
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
@@ -52,6 +52,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     'tudou': this.iURL + 'tudou.swf',
                     'tudou_olc': this.iURL + 'olc_8.swf',
                     'tudou_sp': this.iURL + 'sp.swf',
+                    'baidu_call': this.iURL + 'baidu.call.swf',
                     'letv': this.iURL + 'letv.swf',
                     'letv_cloud': this.iURL + 'letv_cloud.swf',
                     'sohu':this.iURL + 'sohu/sohu.swf',
@@ -100,8 +101,8 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': this.players['iqiyi_out']
                     },
                     'pps': {
-                        'find': /^https?:\/\/www\.iqiyi\.com\/player\/cupid\/.*\/pps[\w]+.swf/i,
-                        'replace': this.players['pps']
+                        'find': /^https?:\/\/www\.iqiyi\.com\/common\/.*\/pps[\w]+.swf/i,
+                        'replace': this.players['iqiyi_out']
                     },
                     'pplive': {
                         'find': /^http:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
@@ -118,6 +119,10 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     'tudou_out': {
                         'find': /^http:\/\/www\.tudou\.com\/.*(\/v\.swf)?/i,
                         'replace': this.players['tudou_olc'] + '?tvcCode=-1&swfPath=' + this.players['tudou_sp']
+                    },
+                    'baidu_call': {
+                        'find': /^http\:\/\/list\.video\.baidu\.com\/swf\/advPlayer\.swf/i,
+                        'replace': this.players['baidu_call']
                     },
                     'letv': {
                         'find': /^http:\/\/.*letv[\w]*\.com\/.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf|VLetv)Player[^\.]*\.swf/i,
