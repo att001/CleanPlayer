@@ -3,7 +3,7 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.1106
+// @version     3.14.1107
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
@@ -47,8 +47,8 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                     'iqiyi5': this.iURL + 'iqiyi5.swf',
                     'iqiyi_out': this.iURL + 'iqiyi_out.swf',
                     'pps': this.iURL + 'pps.swf',
-                    'pplive': this.iURL + 'pplive.swf',
-                    'pplive_live': this.iURL + 'pplive_live.swf',
+                    'pptv': this.iURL + 'pptv.in.Ikan.swf',
+                    'pptv_live': this.iURL + 'pptv.in.Live.swf',
                     'tudou': this.iURL + 'tudou.swf',
                     'tudou_olc': this.iURL + 'olc_8.swf',
                     'tudou_sp': this.iURL + 'sp.swf',
@@ -104,13 +104,13 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'find': /^https?:\/\/www\.iqiyi\.com\/common\/.*\/pps[\w]+.swf/i,
                         'replace': this.players['iqiyi_out']
                     },
-                    'pplive': {
+                    'pptv': {
                         'find': /^http:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
-                        'replace': this.players['pplive']
+                        'replace': this.players['pptv']
                     },
-                    'pplive_live': {
+                    'pptv_live': {
                         'find': /^http:\/\/player\.pplive\.cn\/live\/.*\/player4live2\.swf/i,
-                        'replace': this.players['pplive_live']
+                        'replace': this.players['pptv_live']
                     },
                     'tudou': {
                         'find': /^http:\/\/js\.tudouui\.com\/.*PortalPlayer[^\.]*\.swf/i,
