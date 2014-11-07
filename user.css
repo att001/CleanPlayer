@@ -23,28 +23,9 @@
 /* wenku.baidu.com */p[class^="reader-word-"]{font-family: "Corbel","Gabriola","Times New Roman Italic","Times New Roman","91c5a3bbfd0a79563c1e72030080001","Nimbus Roman No9 L","SimHei","SimSun","NSimSun","Symbol","Microsoft JhengHei UI","Microsoft JhengHei","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei Mono","WenQuanYi Zen Hei Mono","Hiragino Sans GB"  !important;letter-spacing:-4px  !important;}
 /* maxiang.info/dillinger.io */div[class^=ace_]>div>*>span[class^=ace_]{font-family: "Inconsolata-g","Inconsolata","SimHei","KaiTi","SimSun"  !important;}
 /* acgdb.com */#top #top-options > label,.mediaviewer-inset > .wrapper > .close:before,.mediaviewer > .wrapper > .body .panel .share,.mediaviewer-overlay > .wrapper > .body .nav a,.form-login > div p a[acgdb-tip="新浪微博"],.form-login > div p a[acgdb-tip="腾讯微博"],.slideshow2 > .wrap > label span em,#quickfacts > .nav a span,#acgdb-picviewer > .top > .switches label{font-family: "acgdb"  !important;}
-/* firefox.net.cn *//* S */.wrap > .main_wrap > .bread_crumb,.main_wrap>.forum_page>.bbs_info_box{padding: 62px 1px 10px 20px  !important;}
 /* entypo.com */div.content > #logo > #front,div.content > #logo > #back{font-family: "entypo-logo"  !important;}
-/* caipiao.sohu.com */div.sgcp_a_d#sgcp_a_d,div.sgcp_a_d_mask#sgcp_a_d_mask{display: none  !important;}
-/* sf-express.com */ul > li > span[class^=sfi],div > li > span[class^=sfi],div > span > span[class^=sfi],h4 > a > span[class^=sfi],.bill-number > .go-waybill-by-phone-num > span[class^=sfi],li > a > span[class^=sfi]{font-family: "sf-express-icon"  !important;}
-/* baidu.com *//* Y */HTML > BODY > #_mask[style^="opacity"]{display: none  !important;}
-/* read.qidian.com *//* D */#qd_reader_header > .page_set > .gg_box{display: none  !important;}
-/* google.com *//* Y */#cnt > div.mw > #flyr{display: none  !important;}
-/* dzh.mop.com *//* D */body > .topbar > .m-topbar-wrapper{border-bottom: 2px dashed #D0D0D0  !important;}
-/* dzh.mop.com *//* Y */.main > .p20 > .dzh-indexNotice.mb15{display: none  !important;}
-/* dzh.mop.com *//* Y */div > .main .p20{padding: 0px 20px 0px 20px  !important;}
-/* s.taobao.com *//* D */.grid-view .item .g_price{letter-spacing: normal  !important;}
+go-waybill-by-phone-num > span[class^=sfi],li > a > span[class^=sfi]{font-family: "sf-express-icon"  !important;}
 /* duckduckgo.com *//* L */.search-wrap--home > #search_form_homepage > #search_button_homepage,.header__content > #search_form > #search_form_input_clear,.search-wrap--home > #search_form_homepage > #search_form_input_clear,.region-indicator-wrap > .region-indicator > span.region-indicator__icn,.header__content > #search_form > #search_button,#header_wrapper > .header--aside > .header__button--menu,div.zci__metabar > span.zci__metabar__mode-wrap > a.zci__metabar__mode{font-family: "ddg-serp-icons","DDG_ProximaNova"  !important;}
-/* tudou.com *//* DS */.con_player > .player_container > #player{height: inherit  !important;}
-/* wordpress.com *//* Y */.format-standard > .content > p,#maincontent_inner > .format-standard > .post-info,#wrapper > #content > #title,#maincontent > #maincontent_inner > .post{margin: inherit  !important;}
-/* wordpress.com *//* Y */#maincontent_inner > div > .post-meta{padding: inherit  !important;}
-/* wordpress.com *//* Y */#header>#header_inner> .nav,#header > #header_inner > #search-form{top: 2px  !important;}
-/* wordpress.com *//* Y */.content-sidebar > #wrapper > #header{height: 33px  !important;}
-/* wordpress.com *//* Y */.content-sidebar > #wrapper > #content{max-width: none  !important;}
-/* wordpress.com *//* Y */#maincontent_inner > .format-standard > .sep{height: 3.5px  !important;}
-/* 17173.com*//* SY */BODY.trend > .wrapper > #content{padding-top: initial  !important;}
-/* 17173.com*//* SY */#center > .center-con > #flashBox{margin-top: initial  !important;}
-/* 17173.com*//* SY */#playRight > #rightTalk > .right-adimg{height: 0px !important;border-style: none !important;}
 
 /*淡蓝色边框*/
 input:focus,textarea:focus,select:focus{
@@ -143,10 +124,10 @@ div#v_shapeLeft_divId,div#v_shapeRight_divId {display: none !important}
 body.adv-browser>div.Tv-rest+div.Prevue-video {display: none !important}
 
 /*1905电影网*/
-div#carousel_banner {display: none !important}
+div#carousel_banner,div.eventLink_pageBackground {display: none !important}
 
 /*大成网*/
-.sider_ad,iframe#commentIframe,.l_qq_com,[id^="ad_"],.Top-Ad,.tl_ad,.ad-h55,[class^="ad-box"] {display: none !important}
+.sider_ad,iframe#commentIframe,.l_qq_com,[id^="ad_"],.Top-Ad,.tl_ad,.ad-h55,div.mod-right.adbutton-Aritcle-QQ,[class^="ad-box"] {display: none !important}
 
 /*精睿安全*/
 div.a_pb,#wechat_float_qrcode {display: none !important}
@@ -187,7 +168,7 @@ div.banner990 {display: none !important}
 div.main_box>div.list_left>div.menu_button {display: none !important}
 
 /*游民星空*/
-div#hitix,div#bgAdWrapClose,div.gpzl {display: none !important}
+div#hitix,div#bgAdWrapClose,div.gpzl,div#bglink {display: none !important}
 
 /*17173*/
 .ad-con,[class^="ad-pn"],[class^="ad-sy-"] {display: none !important}
