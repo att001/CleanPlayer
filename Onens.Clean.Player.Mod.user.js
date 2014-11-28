@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.1.8.1019
+// @version     2.1.8.1126
 // @updateURL   https://userscripts.org/scripts/source/162430.meta.js
 // @downloadURL https://userscripts.org/scripts/source/162430.user.js
 // @include     http://*/*
@@ -125,19 +125,19 @@ var OCPlayer = {
 		replace: 'sohu/sohu.swf'
 	}, { // SOHU_LIVE
 		find: /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(live\/|)\d+|(\d+\.){3}\d+(:\d+)?\/(.*player))\/(main|PlayerShell)\.swf/i,
-		replace: 'sohu/sohu_live.swf'
+		replace: aHost + 'sohu/sohu_live.swf'
 	}, { // SOHU_Bilibili
 		find: /^http:\/\/static\.hdslb\.com\/sohu\.swf/i,
-		replace: 'sohu/sohu_live.swf'
+		replace: aHost + 'sohu/sohu_live.swf'
 	}, { // SOHU_OUT_1
 		find: /^http:\/\/.*\.sohu\.com\/my\/v\.swf(.*)/i,
-		replace: 'sohu/sohu_live.swf' + '?$1'
+		replace: aHost + 'sohu/sohu_live.swf' + '?$1'
 	}, { // SOHU_OUT_2
 		find: /^http:\/\/.*\.sohu\.com\/(\d+)\/v\.swf/i,
-		replace: 'sohu/sohu_live.swf' + '?vid=$1'
+		replace: aHost + 'sohu/sohu_live.swf' + '?vid=$1'
 	}, { // SOHU_OUT_2
 		find: /^http:\/\/.*\.sohu\.com\/(\d+)\/v\.swf/i,
-		replace: 'sohu/sohu_live.swf' + '?vid=$1'
+		replace: aHost + 'sohu/sohu_live.swf' + '?vid=$1'
 	}, { // 17173_in_Vod
 		find: /^http:\/\/f\.v\.17173cdn\.com\/\d+\/flash\/PreloaderFile(Customer)?\.swf/i,
 		replace: aHost + '17173/17173.in.Vod.swf'
