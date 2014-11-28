@@ -3,7 +3,7 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.1107
+// @version     3.14.1126
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
