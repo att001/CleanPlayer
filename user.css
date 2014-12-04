@@ -120,7 +120,7 @@ font.jammer {display: none !important}
 div.wgt-bottom-ask,div.cms-slide,.wgt-ads {display: none !important}
 
 /*百度贴吧*/
-#pb_adbanner,div#guide_fc,div#pop_frame,#aside_ad,div#j_ten_years,div.j_banner_post,div#union_mod,div.thread_recommend,[id^="BAIDU_CLB_AD_"],div[id^="dasense_"] {display: none !important}
+#pb_adbanner,div#guide_fc,div#pop_frame,#aside_ad,div#j_ten_years,div.j_banner_post,div#union_mod,div.thread_recommend,[id^="BAIDU_CLB_AD_"],#thread_list>li[data-daid], body>div[data-daid], #j_p_postlist>div[data-daid] {display: none !important}
 
 /*百度百科*/
 body#view>div#topToolbar {display: none !important}
@@ -219,7 +219,8 @@ div#hitix,div#bgAdWrapClose,div.gpzl,div#bglink {display: none !important}
 [class^="ad_"] {display: none !important}
 
 /*微奇生活*/
-div#middle>div#sidebar>div[style^="height"],div#float {display: none !important}
+div#middle>div#sidebar>div[style^="height"] {display: none !important}
+div#middle>div#sidebar>div#float {display: none !important}
 
 /*猛犸家园*/
 #sitefocus,#wx_contarner {display: none !important}
