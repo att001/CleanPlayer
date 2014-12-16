@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name        Video.Clean.Player
 // @namespace   https://github.com/dxdragon/CleanPlayer
-// @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc
+// @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc.
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.1130
+// @version     3.14.12.16
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
@@ -69,11 +69,11 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
             if(!this._rules) {
                 this._rules = {
                     'youku_loader': {
-                        'find': /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/loaders?\.swf/i,
+                        'find': /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/loaders?[^\.]*\.swf/i,
                         'replace': this.players['youku_loader']
                     },
                     'youku_player': {
-                        'find': /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(q?player.*|\w{13})\.swf/i,
+                        'find': /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(q?player[^\.]*|\w{13})\.swf/i,
                         'replace': this.players['youku_player']
                     },
                     'youku_out': {
@@ -161,7 +161,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': 'http://player.letvcdn.com/p/201407/24/15/newplayer/1/SSLetvPlayer.swf'
                     },
                     'sohu': {
-                        'find': /^http:\/\/tv\.sohu\.com\/upload\/swf\/(?!(live|\d+)).*\d+\/(main|PlayerShell)\.swf/i,
+                        'find': /^http:\/\/tv\.sohu\.com\/upload\/swf\/(?!(live|\d+|ap)).*\d+\/(main|PlayerShell)\.swf/i,
                         'replace': this.players['sohu']
                     },
                     'sohu_live': {
@@ -231,7 +231,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                 var isFx = /firefox/i.test(navigator.userAgent);
                 GM_xmlhttpRequest({
                     method: isFx ? 'HEAD' : 'GET',
-                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://code.taobao.org/svn/cleanplayer/trunk/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
+                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://dxdragon.cwsurf.de/cleanplayer/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
                     onload: function(response) {
                         var finalUrl = (isFx ? response.finalUrl : response.responseText);
                         var match = finalUrl.match(/(iid|youkuid|resourceid|autoplay|snap_pic|code)=[^&]+/ig);
