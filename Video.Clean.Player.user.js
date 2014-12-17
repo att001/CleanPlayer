@@ -97,15 +97,15 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': this.players['tudou_olc'] + '?tvcCode=-1&swfPath=' + this.players['tudou_sp']
                     },
                     'ku6': {
-                        'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/(v|player)\.swf/i,
+                        'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player)[^\.]*\.swf/i,
                         'replace': this.players['ku6']
                     },
                     'ku6_out': {
-                        'find': /^http:\/\/player\.ku6\.com\/(inside|refer)\/([^\/]+)\/v\.swf.*/i,
+                        'find': /^http:\/\/player\.ku6\.com\/(inside|refer)\/([^\/]+)\/v\.swf/i,
                         'replace': this.players['ku6_out'] + '?vid=$2'
                     },
                     'iqiyi': {
-                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player.*_(.|ad\d+))\.swf/i,
+                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player[^\.]*)\.swf/i,
                         'replace': this.players['iqiyi']
                     },
                     'iqiyi_out': {
@@ -117,12 +117,16 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': this.players['iqiyi_out']
                     },
                     'pps': {
-                        'find': /^https?:\/\/www\.iqiyi\.com\/common\/.*\/pps[\w]+.swf/i,
+                        'find': /^https?:\/\/www\.iqiyi\.com\/player\/cupid\/.*\/pps[\w]+.swf/i,
                         'replace': this.players['iqiyi_out']
                     },
                     'pps_live': {
                         'find': /^https?:\/\/www\.iqiyi\.com\/common\/flashplayer\/.*\/am.*\.swf/i,
                         'replace': 'about:blank'
+                    },
+                    'pps_live_1': {
+                        'find': /^http:\/\/live\.pps\.tv(?!(\/index.php).*)/i,
+                        'replace': 'http://live.pps.tv/index.php/epg/show'
                     },
                     'pptv': {
                         'find': /^http:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
@@ -184,6 +188,10 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'find': /^http:\/\/f\.v\.17173cdn\.com\/\d+\/flash\/PreloaderFile(Customer)?\.swf/i,
                         'replace': this.players['17173_in_Vod'] 
                     },
+                    '17173_out_Vod': {
+                        'find': /^http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFileFirstpage\.swf/i,
+                        'replace': this.players['17173_out_Vod'] 
+                    },
                     '17173_out_Vod_1': {
                         'find': /^http:\/\/f\.v\.17173cdn\.com\/player_f2\/(\w+)\.swf/i,
                         'replace': this.players['17173_out_Vod'] + '?cid=$1'
@@ -193,11 +201,11 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'replace': this.players['17173_out_Vod']
                     },
                     '17173_in_Live': {
-                        'find': /^http:\/\/f\.v\.17173cdn\.com\/\d+\/flash\/Player_stream(_firstpage)?\.swf/i,
+                        'find': /^http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream(_firstpage)?\.swf/i,
                         'replace': this.players['17173_in_Live']
                     },
                     '17173_out_Live': {
-                        'find': /^http:\/\/f\.v\.17173\.com\/live\/player\/Player_stream_(custom)?Out\.swf/i,
+                        'find': /^http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/i,
                         'replace': this.players['17173_out_Live'] + '?'
                     }
                 }
