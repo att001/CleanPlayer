@@ -3,24 +3,13 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc.
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.14.12.16
+// @version     3.14.12.20
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
 // @grant       GM_xmlhttpRequest
-// @run-at      document-end
+// @run-at      document-start
 // ==/UserScript==
-
-if (typeof GM_xmlhttpRequest == 'undefined') {
-	var GM_xmlhttpRequest = function(obj) {
-		var xhr = new XMLHttpRequest();
-		xhr.open(obj.method, obj.url, true);
-		xhr.send();
-		xhr.onreadystatechange = function() {
-			xhr.readyState == 4 && typeof obj.onload == 'function' && obj.onload(xhr);
-		};
-	};
-}
 
 (function() {
     Function.prototype.bind = function() {
@@ -32,35 +21,36 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
 
     function YoukuAntiAds() {}
     YoukuAntiAds.prototype = {
-        iURL: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
+        //_host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
+        _host: 'http://code.taobao.org/svn/cleanplayer/trunk/player/', //必须在线的地址
         _players: null,
         _rules: null,
         _done: null,
         get players() {
             if(!this._players) {
                 this._players = {
-                    'youku_loader': this.iURL + 'loader.swf',
-                    'youku_player': this.iURL + 'player.swf',
-                    'tudou': this.iURL + 'tudou.swf',
-                    'tudou_olc': this.iURL + 'olc_8.swf',
-                    'tudou_sp': this.iURL + 'sp.swf',
-                    'ku6': this.iURL + 'ku6.swf',
-                    'ku6_out': this.iURL + 'ku6_out.swf',
-                    'iqiyi': this.iURL + 'iqiyi.swf',
-                    'iqiyi5': this.iURL + 'iqiyi5.swf',
-                    'iqiyi_out': this.iURL + 'iqiyi_out.swf',
-                    'pps': this.iURL + 'pps.swf',
-                    'pptv': this.iURL + 'pptv.in.Ikan.swf',
-                    'pptv_live': this.iURL + 'pptv.in.Live.swf',
-                    'baidu_call': this.iURL + 'baidu.call.swf',
-                    'letv': this.iURL + 'letv.swf',
-                    'letv_cloud': this.iURL + 'letv_cloud.swf',
-                    'sohu':this.iURL + 'sohu/sohu.swf',
-                    'sohu_live':this.iURL + 'sohu/sohu_live.swf',
-                    '17173_in_Vod': this.iURL + '17173/17173.in.Vod.swf', 
-                    '17173_in_Live': this.iURL + '17173/17173.in.Live.swf',
-                    '17173_out_Vod': this.iURL + '17173/17173.out.Vod.swf',
-                    '17173_out_Live': this.iURL + '17173/17173.out.Live.swf',
+                    'youku_loader': this._host + 'loader.swf',
+                    'youku_player': this._host + 'player.swf',
+                    'tudou': this._host + 'tudou.swf',
+                    'tudou_olc': this._host + 'olc_8.swf',
+                    'tudou_sp': this._host + 'sp.swf',
+                    'ku6': this._host + 'ku6.swf',
+                    'ku6_out': this._host + 'ku6_out.swf',
+                    'iqiyi': this._host + 'iqiyi.swf',
+                    'iqiyi5': this._host + 'iqiyi5.swf',
+                    'iqiyi_out': this._host + 'iqiyi_out.swf',
+                    'pps': this._host + 'pps.swf',
+                    'pptv': this._host + 'pptv.in.Ikan.swf',
+                    'pptv_live': this._host + 'pptv.in.Live.swf',
+                    'baidu_call': this._host + 'baidu.call.swf',
+                    'letv': this._host + 'letv.swf',
+                    'letv_cloud': this._host + 'letv_cloud.swf',
+                    'sohu':this._host + 'sohu/sohu.swf',
+                    'sohu_live':this._host + 'sohu/sohu_live.swf',
+                    '17173_in_Vod': this._host + '17173/17173.in.Vod.swf', 
+                    '17173_in_Live': this._host + '17173/17173.in.Live.swf',
+                    '17173_out_Vod': this._host + '17173/17173.out.Vod.swf',
+                    '17173_out_Live': this._host + '17173/17173.out.Live.swf',
                };
             }
             return this._players;
@@ -208,18 +198,16 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                         'find': /^http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/i,
                         'replace': this.players['17173_out_Live'] + '?'
                     }
-                }
+                };
             }
             return this._rules;
         },
-
         get done() {
             if(!this._done) {
                 this._done = new Array();
             }
             return this._done;
         },
-
         initPreHandlers: function() {
             this.rules['iqiyi']['preHandle'] = function(elem, find, replace, player) {
                 if(document.querySelector('span[data-flashplayerparam-flashurl]')) {
@@ -239,7 +227,7 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                 var isFx = /firefox/i.test(navigator.userAgent);
                 GM_xmlhttpRequest({
                     method: isFx ? 'HEAD' : 'GET',
-                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://dxdragon.cwsurf.de/cleanplayer/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
+                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://code.taobao.org/svn/cleanplayer/trunk/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
                     onload: function(response) {
                         var finalUrl = (isFx ? response.finalUrl : response.responseText);
                         var match = finalUrl.match(/(iid|youkuid|resourceid|autoplay|snap_pic|code)=[^&]+/ig);
@@ -251,19 +239,51 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                 });
             }
         },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+-ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+-o-animation-duration:.001s;-o-animation-name:playerInserted;\
+animation-duration:.001s;animation-name:playerInserted;}\
+@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        addTimer: function() {
+            setInterval(function() {
+                this.players.length && this.players.shift()();
+            }.bind(this), 100);
+        },
+        addTips: function() {
+            if (this.done.indexOf('tips') != -1)
+			          return;
 
-        style: 'object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}',
+		        this.done.push('tips');
 
-        tips_html: '<span style="color:green">Video.Clean.Player \u5DF2\u542F\u7528</span> &nbsp; <a href="https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js" style="color:red" title="\u5347\u7EA7\u65B0\u7248" target="_blank">\u5347\u7EA7</a> &nbsp; <a href="http://bbs.kafan.cn/thread-1514537-1-1.html" style="color:blue" title="\u53CD\u9988\u95EE\u9898" target="_blank">\u53CD\u9988</a> &nbsp; <a href="javascript:;" class="tip_close" style="color:gray" title="\u9690\u85CF\u63D0\u793A">\u9690\u85CF</a>',
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = '.tips_container{font:12px Arial, Verdana;padding:0 8px;cursor:default;border:1px solid #d5d5d5;line-height:25px;opacity:.2;background:#f5f5f5;position:fixed;right:0;bottom:-1px;z-index:999999}.tips_container:hover{opacity:.8}';
+            document.getElementsByTagName('head')[0].appendChild(style);
 
-        tips_style: '.tips_container{font:12px Arial, Verdana;padding:0 8px;cursor:default;border:1px solid #d5d5d5;line-height:25px;opacity:.2;background:#f5f5f5;position:fixed;right:0;bottom:-1px;z-index:999999}.tips_container:hover{opacity:.8}',
-
+            var div = document.createElement('div');
+            div.className = 'tips_container';
+            div.innerHTML = '<span style="color:green">Video.Clean.Player \u5DF2\u542F\u7528</span> &nbsp; <a href="https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js" style="color:red" title="\u5347\u7EA7\u65B0\u7248" target="_blank">\u5347\u7EA7</a> &nbsp; <a href="http://bbs.kafan.cn/thread-1514537-1-1.html" style="color:blue" title="\u53CD\u9988\u95EE\u9898" target="_blank">\u53CD\u9988</a> &nbsp; <a href="javascript:;" class="tip_close" style="color:gray" title="\u9690\u85CF\u63D0\u793A">\u9690\u85CF</a>';
+            div.querySelector('.tip_close').addEventListener('click', function(e) {
+            e.stopPropagation && e.stopPropagation();
+            e.preventDefault && e.preventDefault();
+            div.parentNode.removeChild(div);
+            }, false);
+            (document.documentElement || document.body).appendChild(div);
+        },
         animationsHandler: function(e) {
             if(e.animationName === 'playerInserted') {
                 this.replace(e.target);
             }
         },
-
         replace: function(elem) {
             if(this.done.indexOf(elem) != -1) return;
             this.done.push(elem);
@@ -287,12 +307,10 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
                 }
             }
         },
-
         reallyReplace: function(elem, find, replace) {
             elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
             this.reloadPlugin(elem);
         },
-
         reloadPlugin: function(elem) {
             var nextSibling = elem.nextSibling;
             var parentNode = elem.parentNode;
@@ -304,50 +322,19 @@ if (typeof GM_xmlhttpRequest == 'undefined') {
             } else {
                 parentNode.appendChild(newElem);
             }
-            this.Tips();
+
+            this.addTips();
         },
-
-        Style: function(css) {
-          var style = document.createElement('style');
-          style.setAttribute('type', 'text/css');
-          style.innerHTML = css || this.style;
-          document.getElementsByTagName('head')[0].appendChild(style);
-        },
-
-        Timer: function() {
-          setInterval(function() {
-            this.list.length && this.list.shift()();
-          }.bind(this), 100);
-        },
-
-        Tips: function() {
-          if (this.done.indexOf('tips') != -1)
-            return;
-
-          this.done.push('tips');
-
-          this.Style(this.tips_style);
-
-          var div = document.createElement('div');
-          div.className = 'tips_container';
-          div.innerHTML = this.tips_html;
-          div.querySelector('.tip_close').addEventListener('click', function(e) {
-            e.stopPropagation && e.stopPropagation();
-            e.preventDefault && e.preventDefault();
-            div.parentNode.removeChild(div);
-          }, false);
-          (document.documentElement || document.body).appendChild(div);
-        },
-
         init: function() {
             this.initPreHandlers();
 
+            var handler = this.animationsHandler.bind(this);
             var events = ['webkitAnimationStart', 'msAnimationStart', 'oAnimationStart', 'animationstart'];
             for (var i in events)
-                document.addEventListener(events[i], this.animationsHandler.bind(this), false);
-            
-            this.Style();
-            this.Timer();
+                document.body.addEventListener(events[i], handler, false);
+
+            this.addAnimations();
+            this.addTimer();
         }
     };
 
