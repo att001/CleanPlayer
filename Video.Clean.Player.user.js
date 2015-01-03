@@ -21,8 +21,7 @@
 
     function YoukuAntiAds() {}
     YoukuAntiAds.prototype = {
-        //_host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
-        _host: 'http://code.taobao.org/svn/cleanplayer/trunk/player/',
+        _host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
         _players: null,
         _rules: null,
         _done: null,
@@ -220,7 +219,7 @@
                 var isFx = /firefox/i.test(navigator.userAgent);
                 GM_xmlhttpRequest({
                     method: isFx ? 'HEAD' : 'GET',
-                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://code.taobao.org/svn/cleanplayer/trunk/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
+                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://dxdragon.cwsurf.de/cleanplayer/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
                     onload: function(response) {
                         var finalUrl = (isFx ? response.finalUrl : response.responseText);
                         var match = finalUrl.match(/(iid|youkuid|resourceid|autoplay|snap_pic|code)=[^&]+/ig);
