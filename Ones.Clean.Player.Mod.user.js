@@ -32,7 +32,7 @@ Function.prototype.bind = function() {
 };
 
 var OCPlayer = {
-	host: 'http://code.taobao.org/svn/cleanplayer/trunk/player/',
+	host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
 	list: [],
 	done: [],
 	rule: [{ // YOUKU_COM
