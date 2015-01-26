@@ -3,7 +3,7 @@
 // @namespace   https://github.com/dxdragon/CleanPlayer
 // @author      Original By yndoc, Mod By dxdragon,Thanks to OpenGG, cinhoo, KaFan15536900, gesion,catcat520,jc3213,etc.
 // @description 去除国内常见视频网站的播放前视频广告
-// @version     3.15.1.2
+// @version     3.15.1.27
 // @downloadURL https://github.com/dxdragon/CleanPlayer/blob/master/Video.Clean.Player.user.js
 // @include     http://*/*
 // @include     https://*/*
@@ -44,7 +44,6 @@
                     'baidu_call': this._host + 'baidu.call.swf',
                     'letv': this._host + 'letv.swf',
                     'letv_live': this._host + 'letv_live.swf',
-                    'letv_cloud': this._host + 'letv_cloud.swf',
                     'sohu':this._host + 'sohu/sohu.swf',
                     'sohu_live':this._host + 'sohu/sohu_live.swf',
                     '17173_in_Vod': this._host + '17173/17173.in.Vod.swf', 
@@ -75,11 +74,11 @@
                         'replace': this.players['tudou']
                     },
                     'tudou_out': {
-                        'find': /^http:\/\/www\.tudou\.com\/.*(\/v\.swf)?/i,
-                        'replace': this.players['tudou_olc'] + '?tvcCode=-1&swfPath=' + this.players['tudou_sp']
+                        'find': /^http:\/\/www\.tudou\.com\/.*&iid=(\d+)\/v\.swf/i,
+                        'replace': this.players['tudou_olc'] + '?iid=$1&swfPath=' + this.players['tudou_sp']
                     },
                     'ku6': {
-                        'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player)[^\.]*\.swf/i,
+                        'find': /^http:\/\/player\.ku6cdn\.com\/default\/loader\/.*\/(v|player)\.swf/i,
                         'replace': this.players['ku6']
                     },
                     'ku6_out': {
@@ -87,14 +86,14 @@
                         'replace': this.players['ku6_out'] + '?vid=$2'
                     },
                     'iqiyi': {
-                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main|Share)?Player[^\.]*)\.swf/i,
+                        'find': /^https?:\/\/www\.iqiyi\.com\/(player\/(\d+\/Player|[a-z0-9]*)|common\/flashplayer\/\d+\/((PPS)?Main)?Player[^\.]*)\.swf|http:\/\/www\.bilibili\.tv\/iqiyi\.swf/i,
                         'replace': this.players['iqiyi']
                     },
                     'iqiyi_out': {
                         'find': /^https?:\/\/player\.video\.i?qiyi\.com\/([^\/]*)\/.*tvId=([^-]*).*/i,
                         'replace': this.players['iqiyi_out'] + '?vid=$1&tvId=$2'
                     },
-                    'iqiyi_out_2': {
+                    'iqiyi_out_1': {
                         'find': /^https?:\/\/(player|dispatcher)\.video\.i?qiyi\.com\/(.*\/shareplayer\.swf|qiyi)/i,
                         'replace': this.players['iqiyi_out']
                     },
@@ -105,10 +104,6 @@
                     'pps_live': {
                         'find': /^https?:\/\/www\.iqiyi\.com\/common\/flashplayer\/.*\/am.*\.swf/i,
                         'replace': 'about:blank'
-                    },
-                    'pps_live_1': {
-                        'find': /^http:\/\/live\.pps\.tv(?!(\/index.php).*)/i,
-                        'replace': 'http://live.pps.tv/index.php/epg/show'
                     },
                     'pptv': {
                         'find': /^http:\/\/player\.pplive\.cn\/ikan\/.*\/player4player2\.swf/i,
@@ -123,19 +118,15 @@
                         'replace': this.players['baidu_call']
                     },
                     'letv': {
-                        'find': /^http:\/\/.*letv[\w]*\.com\/(hz|.*?\/((?!(Live|seed|Disk))(S(?!SDK)[\w]{2,3})?(?!Live)[\w]{4}|swf|VLetv))Player[^\.]*\.swf/i,
+                        'find': /^http:\/\/.*letv[\w]*\.com\/.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf|VLetv)Player*\.swf/i,
                         'replace': this.players['letv']
                     },
-                    'letv_pccs': {
-                        'find': /^http:\/\/www.letv.com\/.*\/playerapi\/pccs_(?!(live|sdk)).*_?(\d+)\.xml/i,
-                        'replace': 'http://www.letv.com/cmsdata/playerapi/pccs_sdk_201409191523.xml'
+                    'letv_hz': {
+                        'find': /^http:\/\/.*letv[\w]*\.com\/(hz|.*player\/(s)?sdkletv)player\.swf.*/i,
+                        'replace': this.players['letv']
                     },
-                    'letv_cloud': {
-                        'find': /^http:\/\/.*letv[\w]*\.com\/.*cloud(?!(_bili).*)?\.swf/i,
-                        'replace': this.players['letv_cloud']
-                    },
-                    'duowan': {
-                        'find': /^http:\/\/assets\.dwstatic\.com\/.*\/vpp\.swf/i,
+                    'letv_duowan': {
+                        'find': /^http:\/\/assets\.dwstatic\.com\/.*\/vppp?\.swf/i,
                         'replace': 'http://yuntv.letv.com/bcloud.swf'
                     },
                     'letv_out': {
@@ -143,7 +134,7 @@
                         'replace': this.players['letv'] + '$1'
                     },
                     'letv_specail': {
-                        'find': /^http:\/\/.*\.letvimg\.com\/.*\/(letvbili|lbplayer|letv-wrapper|acfunletv[^\.]*)\.swf/i,
+                        'find': /^http:\/\/.*\.letv[\w]*\.com\/.*\/(letvbili|lbplayer|letv-wrapper|acfunletv[^\.]*)\.swf/i,
                         'replace': this.players['letv']
                     },
                     'letv_skin': {
@@ -219,7 +210,7 @@
                 var isFx = /firefox/i.test(navigator.userAgent);
                 GM_xmlhttpRequest({
                     method: isFx ? 'HEAD' : 'GET',
-                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://dxdragon.cwsurf.de/cleanplayer/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
+                    url: isFx ? player : 'https://query.yahooapis.com/v1/public/yql?format=json&q=' + encodeURIComponent('use"http://code.taobao.org/svn/cleanplayer/trunk/firefox/tudou_redirect.yql.xml" as tudou; select * from tudou where url="' + player + '" and referer="' + window.location.href + '"'),
                     onload: function(response) {
                         var finalUrl = (isFx ? response.finalUrl : response.responseText);
                         var match = finalUrl.match(/(iid|youkuid|resourceid|autoplay|snap_pic|code)=[^&]+/ig);
