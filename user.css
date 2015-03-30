@@ -64,16 +64,16 @@ font[style*="font-size: 0px;"] {display: none !important}
 .adsbygoogle,#tads,#bottomads {display: none !important}
 
 /*360搜索*/
-#so_kw-ad,div#m-spread-left {display: none !important}
+#so_kw-ad {display: none !important}
 
 /*百度*/
 #adCard,table#relEcom,#adsearch,#siderAdAfterPicInfo,div[id^="relecom"] {display: none !important}
 
 /*百度知道*/
-div.wgt-bottom-ask,div.cms-slide,.wgt-ads,.widget-ads,aside.aside.fixheight {display: none !important}
+div.wgt-bottom-ask,div.wgt-xiaozhi,div.cms-slide,.wgt-ads,.widget-ads {display: none !important}
 
 /*百度贴吧*/
-#pb_adbanner,div#guide_fc,div#pop_frame,#aside_ad,div#j_ten_years,div.j_banner_post,div#union_mod,div.thread_recommend,[id^="BAIDU_CLB_AD_"],#thread_list>li[data-daid],body>div[data-daid],#j_p_postlist>div[data-daid],div.forum_header>div[data-daid] {display: none !important}
+#pb_adbanner,#aside_ad,div.guidance_fc,[id^="BAIDU_CLB_AD_"],#thread_list>li[data-daid],#j_p_postlist>div[data-daid],div.forum_header>div[data-daid] {display: none !important}
 
 /*百度百科*/
 body#view>div#topToolbar {display: none !important}
@@ -88,7 +88,7 @@ body#view>div#topToolbar {display: none !important}
 div#activateGuidePopupOuter {display: none !important}
 
 /*优酷*/
-div.sk_banner,[class^="yk-AD-"] {display: none !important}
+div.sk_banner,div.yk-skin,[class^="yk-AD-"] {display: none !important}
 
 /*乐视*/
 .Ad,.ad_pop,.J-odeum,[id^="JS_H_ad_"],div[id^="a_column_banner_"] {display: none !important}
@@ -143,6 +143,9 @@ aside.jobs-widget {display: none !important}
 /*新浪网*/
 .adNone {display: none !important}
 
+/*搜狐*/
+.full-ad {display: none !important}
+
 /*网易*/
 .ad-main,div#js-epSpRecommend {display: none !important}
 
@@ -152,21 +155,14 @@ aside.jobs-widget {display: none !important}
 /*博闻网*/
 [id^="div-gpt-ad-"] {display: none !important}
 
-/*人人影视*/
-.ads_partner_list {display: none !important}
-
-/*A67手机电影网*/
-div.banner990 {display: none !important}
-div.main_box>div.list_left>div.menu_button {display: none !important}
-
 /*游民星空*/
-div#hitix,div#bgAdWrapClose,div.gpzl,div#bglink {display: none !important}
+div#bgAdWrapClose,div.gpzl {display: none !important}
 
 /*17173*/
 .ad-con,[class^="ad-pn"],[class^="ad-sy-"] {display: none !important}
 
 /*迅雷快传*/
-.adv_area {display: none !important}
+[class^="adv_"] {display: none !important}
 
 /*新浪爱问*/
 [class^="ad_"] {display: none !important}
@@ -186,3 +182,9 @@ div#middle>div#sidebar>div#float {display: none !important}
 
 /*小木虫论坛*/
 .adtable,.adclass {display: none !important}
+
+/*中金在线*/
+div.Banner.Cf {display: none !important}
+
+/*几分钟*/
+div.quan_gongao,div.regis_tip {display: none !important}
