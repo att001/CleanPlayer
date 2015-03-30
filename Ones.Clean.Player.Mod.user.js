@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.2.0
+// @version     2.2.1
 // @updateURL   http://gesion.duapp.com/script/onens.clean.player.user.js
 // @downloadURL http://gesion.duapp.com/script/onens.clean.player.user.js
 // @include     http://*/*
@@ -32,7 +32,7 @@ Function.prototype.bind = function() {
 };
 
 var OCPlayer = {
-	host: 'http://code.taobao.org/svn/cleanplayer/trunk/player/',
+  host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
 	list: [],
 	done: [],
 	rule: [{ // YOUKU_COM
@@ -97,21 +97,18 @@ var OCPlayer = {
 			});
 		}
 	}, { // LETV_COM
-		find: /^http:\/\/.*letv[\w]*\.com\/.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf|VLetv)Player*\.swf/i,
+		find: /^http:\/\/.*letv[\w]*\.com\/(hz|.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf))Player*\.swf/i,
 		replace: function(el, find) {
-			/^baidu\.hz\.letv\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'letv.swf')();
+			/^baidu\.hz\.letv\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'http://gesion.duapp.com/player/letv.swf')();
 		}
 	}, { // LETV_COM
 		find: /^http:\/\/.*letv[\w]*\.com\/.*\/(letv-wrapper|letvbili|lbplayer)\.swf/i,
-		replace: 'letv.swf'
-	}, { // LETV_HZ
-		find: /^http:\/\/.*letv[\w]*\.com\/(hz|.*player\/(s)?sdkletv)player\.swf.*/i,
 		replace: 'letv.swf'
 	}, { // LETV_SKIN
 		find: /^http:\/\/.*letv[\w]*\.com\/p\/\d+\/\d+\/(?!15)\d*\/newplayer\/\d+\/S?SLetvPlayer\.swf/i,
 		replace: 'http://player.letvcdn.com/p/201407/24/15/newplayer/1/SSLetvPlayer.swf'
 	}, { // LETV_CLOUD
-		find: /^http:\/\/assets\.dwstatic\.com\/video\/vppp?\.swf/i,
+		find: /^http:\/\/assets\.dwstatic\.com\/video\/vpp\.swf/i,
 		replace: 'http://yuntv.letv.com/bcloud.swf'
 	}, { // LETV_OUT
 		find: /^http:\/\/.*letv\.com\/player\/swfplayer\.swf(\?.*)/i,
@@ -123,9 +120,6 @@ var OCPlayer = {
 		find: /^http:\/\/player\.pplive\.cn\/live\/.*\/player4live2\.swf/i,
 		replace: 'pplive_live.swf'
 	}, { // SOHU_COM
-		find: /^http:\/\/tv\.sohu\.com\/upload\/swf\/(?!(live|\d+|ap)).*\d+\/(main|PlayerShell)\.swf/i,
-		replace: 'sohu/sohu.swf'
-	}, { // SOHU_LIVE
 		find: /^http:\/\/(tv\.sohu\.com\/upload\/swf\/(p2p\/)?\d+|(\d+\.){3}\d+(:\d+)?\/webplayer)\/Main\.swf/i,
 		replace: 'sohu/sohu_live.swf'
 	}, { // SOHU_BILIBILI
