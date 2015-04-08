@@ -2,7 +2,7 @@
 // @name        Onens.Clean.Player
 // @namespace   http://onens.com/
 // @description Thanks to OpenGG, Harv.c, KaFan15536900
-// @version     2.2.1
+// @version     2.2.2
 // @updateURL   http://gesion.duapp.com/script/onens.clean.player.user.js
 // @downloadURL http://gesion.duapp.com/script/onens.clean.player.user.js
 // @include     http://*/*
@@ -32,7 +32,7 @@ Function.prototype.bind = function() {
 };
 
 var OCPlayer = {
-  host: 'http://dxdragon.cwsurf.de/cleanplayer/player/',
+	host: 'http://code.taobao.org/svn/cleanplayer/trunk/player/',
 	list: [],
 	done: [],
 	rule: [{ // YOUKU_COM
@@ -99,7 +99,7 @@ var OCPlayer = {
 	}, { // LETV_COM
 		find: /^http:\/\/.*letv[\w]*\.com\/(hz|.*\/((?!(Live|seed|Disk))(S[\w]{2,3})?(?!Live)[\w]{4}|swf))Player*\.swf/i,
 		replace: function(el, find) {
-			/^baidu\.hz\.letv\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'http://gesion.duapp.com/player/letv.swf')();
+			/^baidu\.hz\.letv\.com/i.test(window.location.host) || this.Reload.bind(this, el, find, 'letv.swf')();
 		}
 	}, { // LETV_COM
 		find: /^http:\/\/.*letv[\w]*\.com\/.*\/(letv-wrapper|letvbili|lbplayer)\.swf/i,
